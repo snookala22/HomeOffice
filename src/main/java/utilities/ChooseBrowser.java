@@ -8,18 +8,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class ChooseBrowser {
 
-    public WebDriver getChromeDriver() throws Exception{
+    public WebDriver getChromeDriver(){
         if (System.getProperty("os.name").toLowerCase().contains("mac"))
         {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/MacChromedriver");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromewebdriver/MacChromedriver");
         }
         else if (System.getProperty("os.name").toLowerCase().contains("linux"))
         {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/linuxhromedriver");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromewebdriver/linuxhromedriver");
         }
         else
         {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromewebdriver/chromedriver.exe");
         }
 
         WebDriver driver = new ChromeDriver();
