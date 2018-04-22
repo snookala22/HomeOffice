@@ -1,0 +1,18 @@
+image: adrianchan/maven-xvfb
+
+before_script:
+  - service xvfb start
+
+stages:
+  - test
+
+test:
+  script:
+    - mvn install:install-file -Dfile=src/main/java/dependencies/bdd-framework-utilities/bdd-framework-utilities-1.0-SNAPSHOT.jar -DpomFile=src/main/java/dependencies/bdd-framework-utilities/pom.xml -q
+    - mvn clean verify -q -Denv=local "-Dcucumber.options=--tags @belly"
+  artifacts:
+    name: "${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
+    when: always
+    paths:
+    - target/site/*
+    expire_in: 1 week
